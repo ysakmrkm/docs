@@ -8,7 +8,7 @@ routes = require("./routes/index")
 users = require("./routes/users")
 app = express()
 
-sassMiddleware = require('node-sass-middleware')
+compass = require('node-compass')
 
 # view engine setup
 app.set "views", path.join(__dirname, "views")
@@ -25,11 +25,10 @@ app.use "/", routes
 app.use "/users", users
 
 app.use(
-  sassMiddleware(
-    src: __dirname + '/src'
-    dest: __dirname + '/public'
-    debug: true
-    outputStyle: 'compressed'
+  compass(
+    sass: __dirname + '/src/stylesheets'
+    css: __dirname + '/public/stylesheets'
+    mode: 'compressed'
   )
 )
 
