@@ -9,6 +9,7 @@ users = require("./routes/users")
 app = express()
 
 compass = require('node-compass')
+session = require('express-session')
 
 # view engine setup
 app.set "views", path.join(__dirname, "views")
@@ -29,6 +30,17 @@ app.use(
     sass: __dirname + '/src/stylesheets'
     css: __dirname + '/public/stylesheets'
     mode: 'compressed'
+  )
+)
+
+app.use(
+  session(
+    secret: 'secret'
+    resave: false
+    saveUninitialized: true
+    cookie:
+      httpOnly: false
+      maxAge: new Date(Date.now() + 60 * 60 * 1000)
   )
 )
 
