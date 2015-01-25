@@ -5,7 +5,6 @@ logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
 routes = require("./routes/index")
-users = require("./routes/users")
 app = express()
 
 compass = require('node-compass')
@@ -23,7 +22,6 @@ app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
-app.use "/users", users
 
 app.use(
   compass(
