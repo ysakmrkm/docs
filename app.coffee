@@ -25,7 +25,7 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use express.static(path.join(__dirname, "public"))
-app.use "/", routes
+
 app.use(
   session(
     secret: 'secret'
@@ -47,6 +47,11 @@ app.use(
   )
 )
 
+# ルーティング
+app.get '/', routes.index
+app.post '/add', routes.add
+app.post '/login', routes.login
+app.post '/logout', routes.logout
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
@@ -54,7 +59,6 @@ app.use (req, res, next) ->
   err.status = 404
   next err
   return
-
 
 # error handlers
 
