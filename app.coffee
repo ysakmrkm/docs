@@ -26,6 +26,18 @@ app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
+app.use(
+  session(
+    secret: 'secret'
+    resave: false
+    saveUninitialized: false
+    store: new mongoStore(
+      db: 'session'
+      host: 'localhost'
+      clear_interval: 60 * 60
+    )
+  )
+)
 
 app.use(
   compass(
@@ -35,16 +47,6 @@ app.use(
   )
 )
 
-app.use(
-  session(
-    secret: 'secret'
-    resave: false
-    saveUninitialized: true
-    cookie:
-      httpOnly: false
-      maxAge: new Date(Date.now() + 60 * 60 * 1000)
-  )
-)
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
