@@ -8,7 +8,14 @@ user = model.user
 exports.index = (req, res) ->
   username = req.session.username
   res.render "index",
-    title: "Express"
+    title: "Index"
+    username: username
+
+# メインページ
+exports.main = (req, res) ->
+  username = req.session.username
+  res.render "main",
+    title: "Main"
     username: username
 
   return
