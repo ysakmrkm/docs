@@ -22,7 +22,7 @@ exports.login = (req, res) ->
       req.session.username = username
     else
       req.session.username = ''
-    res.redirect '/'
+    res.redirect '/main'
   )
 
 # ログアウト

@@ -54,6 +54,7 @@ app.get '/', routes.index
 app.post '/add', account.add
 app.post '/login', status.login
 app.post '/logout', status.logout
+app.get '/main', routes.main
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

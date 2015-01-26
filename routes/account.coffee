@@ -15,6 +15,6 @@ exports.add = (req, res) ->
       username = req.param 'username'
       req.session.username = username
 
-      res.redirect '/'
+      res.redirect '/main'
 
   return
