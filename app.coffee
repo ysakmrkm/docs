@@ -5,6 +5,8 @@ logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
 routes = require("./routes/index")
+account = require("./routes/account")
+status = require("./routes/status")
 
 # 追加モジュール
 compass = require('node-compass')
@@ -49,9 +51,9 @@ app.use(
 
 # ルーティング
 app.get '/', routes.index
-app.post '/add', routes.add
-app.post '/login', routes.login
-app.post '/logout', routes.logout
+app.post '/add', account.add
+app.post '/login', status.login
+app.post '/logout', status.logout
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
