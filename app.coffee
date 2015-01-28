@@ -7,6 +7,7 @@ bodyParser = require("body-parser")
 routes = require("./routes/index")
 account = require("./routes/account")
 status = require("./routes/status")
+files = require("./routes/files")
 
 # 追加モジュール
 compass = require('node-compass')
@@ -55,6 +56,7 @@ app.post '/add', account.add
 app.post '/login', status.login
 app.post '/logout', status.logout
 app.get '/main', routes.main
+app.get '/files/new', files.new
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

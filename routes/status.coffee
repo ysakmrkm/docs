@@ -18,11 +18,13 @@ exports.login = (req, res) ->
     if err
       console.log err
 
+    console.log Object.keys(data).length
     if Object.keys(data).length isnt 0
       req.session.username = username
+      res.redirect '/main'
     else
       req.session.username = ''
-    res.redirect '/main'
+      res.redirect '/'
   )
 
 # ログアウト

@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p new
+  
+  form(method='post', action='/files/create')
+    textarea#markdown.edit(rows='10', cols='30', name='document' oninput='this.editor.update()')
+
+    div#preview
+
+    input(type='submit' value='save')
+
+  script(src='../../javascripts/markdown.js')
+  script
+    :coffee
+      Editor = (input, preview) ->
+        @update = ->
+          preview.innerHTML = markdown.toHTML(input.value);
+          return
+
+        input.editor = this
+
+        @update()
+
+      $ = (id) ->
+        return document.getElementById(id)
+
+      new Editor($("markdown"), $("preview"));
+
+      return
