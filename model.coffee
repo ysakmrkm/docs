@@ -16,4 +16,13 @@ UserSchema = new mongoose.Schema({
   { collection: 'info' }
 )
 
+DocumentSchema = new mongoose.Schema({
+    userId: String
+    title: String
+    document: String
+  }
+  { collection: 'document' }
+)
+
 exports.user = db.model('user', UserSchema)
+exports.document = db.model('document', DocumentSchema)

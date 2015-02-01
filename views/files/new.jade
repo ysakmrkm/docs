@@ -6,6 +6,7 @@ block content
   p new
   
   form(method='post', action='/files/create')
+    input(type='text' name='title')
     textarea#markdown.edit(rows='10', cols='30', name='document' oninput='this.editor.update()')
 
     div#preview

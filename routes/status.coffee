@@ -14,11 +14,9 @@ exports.login = (req, res) ->
     'password': password
 
   user.find(query, (err, data) ->
-    console.log data
     if err
       console.log err
 
-    console.log Object.keys(data).length
     if Object.keys(data).length isnt 0
       req.session.username = username
       res.redirect '/main'
