@@ -3,6 +3,7 @@ router = express.Router()
 
 model = require('../model.coffee')
 user = model.user
+document = model.document
 
 # インデックス
 exports.index = (req, res) ->
@@ -14,8 +15,24 @@ exports.index = (req, res) ->
 # メインページ
 exports.main = (req, res) ->
   username = req.session.username
-  res.render "main",
-    title: "Main"
-    username: username
+
+  query =
+    'username': username
+
+  user.find(query, (err, data) ->
+    id = String(data[0]['_id'])
+
+    query =
+      'userId': id
+
+    document.find(query, (err, data) ->
+      documents = data
+
+      res.render "main",
+        title: "Main"
+        username: username
+        documents: documents
+    )
+  )
 
   return

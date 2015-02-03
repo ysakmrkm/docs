@@ -3,6 +3,12 @@ extends layout
 block content
   h1= title
 
+  if documents
+    ul
+      each document, index in documents
+        li
+          a(href='/files/'+document._id)= document.title
+
   ul
     li
       a(href='/files/new/') new
