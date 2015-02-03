@@ -58,6 +58,7 @@ app.post '/logout', status.logout
 app.get '/main', routes.main
 app.get '/files/new', files.new
 app.post '/files/create', files.create
+app.get '/files/:docId', files.show
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

@@ -34,4 +34,15 @@ exports.create = (req, res) ->
         res.redirect '/main'
   )
 
+# ドキュメント表示
+exports.show = (req, res) ->
+  docId = req.params.docId
+
+  document.findById(docId, (err, data) ->
+    console.log data
+    res.render "files/show",
+      title: data.title
+      body: data.document
+  )
+
   return
