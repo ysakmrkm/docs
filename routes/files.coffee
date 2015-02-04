@@ -45,4 +45,32 @@ exports.show = (req, res) ->
       body: data.document
   )
 
+# ドキュメント編集
+exports.edit = (req, res) ->
+  docId = req.params.docId
+
+  document.findById(docId, (err, data) ->
+    res.render "files/edit",
+      id: data._id
+      title: data.title
+      body: data.document
+  )
+
+# ドキュメント更新
+exports.update = (req, res) ->
+  docId = req.params.docId
+
+  document.findById(docId, (err, data) ->
+    data.title = req.body.title
+    data.document = req.body.document
+
+    data.save (err, data) ->
+      if err
+        console.log err
+      else
+        res.redirect '/main'
+
+    return
+  )
+
   return

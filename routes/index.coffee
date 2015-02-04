@@ -20,6 +20,7 @@ exports.main = (req, res) ->
     'username': username
 
   user.find(query, (err, data) ->
+    console.log data
     id = String(data[0]['_id'])
 
     query =

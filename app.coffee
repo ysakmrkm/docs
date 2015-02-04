@@ -14,6 +14,7 @@ compass = require('node-compass')
 session = require('express-session')
 mongoStore = require('connect-mongo')(session)
 mongoose = require('mongoose')
+methodOverride = require('method-override')
 
 app = express()
 
@@ -28,6 +29,16 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use express.static(path.join(__dirname, "public"))
+
+app.use methodOverride(
+  (req, res) ->
+    if req.body and typeof req.body is 'object'
+      for key of req.body
+        if key is '_method'
+          method = req.body._method
+          delete req.body._method
+          return method
+)
 
 app.use(
   session(
@@ -59,6 +70,9 @@ app.get '/main', routes.main
 app.get '/files/new', files.new
 app.post '/files/create', files.create
 app.get '/files/:docId', files.show
+app.get '/files/:docId/edit', files.edit
+app.post '/files/create', files.create
+app.put '/files/:docId', files.update
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
