@@ -73,6 +73,7 @@ app.get '/files/:docId', files.show
 app.get '/files/:docId/edit', files.edit
 app.post '/files/create', files.create
 app.put '/files/:docId', files.update
+app.delete '/files/:docId', files.destroy
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

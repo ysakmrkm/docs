@@ -73,4 +73,19 @@ exports.update = (req, res) ->
     return
   )
 
+# ドキュメント削除
+exports.destroy = (req, res) ->
+  docId = req.params.docId
+
+  document.findById(docId, (err, data) ->
+    if err
+      console.log err
+  ).remove(
+   (err, data) ->
+    if err
+      console.log err
+    else
+      res.redirect '/main'
+  )
+
   return

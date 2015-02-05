@@ -9,6 +9,9 @@ block content
         li
           a(href='/files/'+document._id)= document.title
           a(href='/files/'+document._id+'/edit') [edit]
+          form(method='post', action='/files/'+document._id)
+            input(type='hidden', name='_method', value='delete')
+            input(type='submit' value='remove')
 
   ul
     li
