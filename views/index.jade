@@ -4,8 +4,8 @@ block content
   h1= title
   p Welcome to #{title}
 
-  if username
-    p Welcome, #{username}.
+  if email
+    p Welcome, #{email}.
 
     form(method='post', action='/logout')
       input(type='submit', value='Logout')
@@ -19,13 +19,13 @@ block content
       h2 add
 
       form(method='post', action='/add')
-        input(type='text', name='username')
+        input(type='email', name='email')
         input(type='password', name='password')
         input(type='submit', value='OK')
 
       h2 login
 
       form(method='post', action='/login')
-        input(type='text', name='username')
+        input(type='email', name='email')
         input(type='password', name='password')
         input(type='submit', value='OK')

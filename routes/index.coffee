@@ -7,17 +7,17 @@ document = model.document
 
 # インデックス
 exports.index = (req, res) ->
-  username = req.session.username
+  email = req.session.email
   res.render "index",
     title: "Index"
-    username: username
+    email: email
 
 # メインページ
 exports.main = (req, res) ->
-  username = req.session.username
+  email = req.session.email
 
   query =
-    'username': username
+    'email': email
 
   user.find(query, (err, data) ->
     console.log data
@@ -31,7 +31,7 @@ exports.main = (req, res) ->
 
       res.render "main",
         title: "Main"
-        username: username
+        email: email
         documents: documents
     )
   )

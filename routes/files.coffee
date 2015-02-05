@@ -9,17 +9,17 @@ markdown = require('markdown').markdown
 
 # 新規作成
 exports.new = (req, res) ->
-  username = req.session.username
+  email = req.session.email
 
   res.render "files/new",
     title: "Create new file"
 
 # ドキュメント作成・保存
 exports.create = (req, res) ->
-  username = req.session.username
+  email = req.session.email
 
   query =
-    'username': username
+    'email': email
 
   user.find(query, (err, data) ->
     id = String(data[0]['_id'])

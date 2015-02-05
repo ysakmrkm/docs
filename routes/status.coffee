@@ -6,11 +6,11 @@ user = model.user
 
 # ログイン
 exports.login = (req, res) ->
-  username = req.param 'username'
+  email = req.param 'email'
   password = req.param 'password'
 
   query =
-    'username': username
+    'email': email
     'password': password
 
   user.find(query, (err, data) ->
@@ -18,10 +18,10 @@ exports.login = (req, res) ->
       console.log err
 
     if Object.keys(data).length isnt 0
-      req.session.username = username
+      req.session.email = email
       res.redirect '/main'
     else
-      req.session.username = ''
+      req.session.destroy()
       res.redirect '/'
   )
 

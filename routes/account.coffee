@@ -12,8 +12,8 @@ exports.add = (req, res) ->
     if err
       console.log err
     else
-      username = req.param 'username'
-      req.session.username = username
+      email = req.param 'email'
+      req.session.email = email
 
       res.redirect '/main'
 
