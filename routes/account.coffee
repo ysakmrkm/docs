@@ -6,7 +6,10 @@ user = model.user
 
 # 追加
 exports.add = (req, res) ->
-  newUser = new user(req.body)
+  if req.body.email is '' or req.body.password is ''
+    res.redirect '/'
+  else
+    newUser = new user(req.body)
 
   newUser.save (err) ->
     if err
