@@ -42,7 +42,7 @@ exports.show = (req, res) ->
     console.log data
     res.render "files/show",
       title: data.title
-      body: data.document
+      body: markdown.toHTML(data.document)
   )
 
 # ドキュメント編集
