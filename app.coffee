@@ -64,6 +64,8 @@ app.use(
 # ルーティング
 app.get '/', routes.index
 app.post '/add', account.add
+app.get '/account/new', account.first
+app.put '/account/save', account.update
 app.post '/login', status.login
 app.post '/logout', status.logout
 app.get '/main', routes.main

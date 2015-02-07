@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p Add your username
+
+  form(method='post', action='/account/save')
+    input(type='text' name='username' placeholder='Enter your username' required='required')
+
+    input(type='hidden', name='_method', value='put')
+    input(type='submit' value='save')

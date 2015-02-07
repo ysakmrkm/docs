@@ -14,10 +14,14 @@ exports.index = (req, res) ->
 
 # メインページ
 exports.main = (req, res) ->
+  username = req.session.username
   email = req.session.email
+  password = req.session.password
 
   query =
+    'username': username
     'email': email
+    'password': password
 
   user.find(query, (err, data) ->
     console.log data
@@ -31,7 +35,7 @@ exports.main = (req, res) ->
 
       res.render "main",
         title: "Main"
-        email: email
+        username: username
         documents: documents
     )
   )

@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title
 
+  p Welcome #{username}
+
   if documents
     ul
       each document, index in documents
