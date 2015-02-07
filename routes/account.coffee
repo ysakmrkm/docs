@@ -32,6 +32,8 @@ exports.first = (req, res) ->
 
 # アカウント更新
 exports.update = (req, res) ->
+
+  username = req.session.username
   email = req.session.email
   password = req.session.password
 
@@ -39,17 +41,32 @@ exports.update = (req, res) ->
     'email': email
     'password': password
 
-  user.find(query, (err, data) ->
+  # 初回登録時
+  if !username?
     username = req.body.username
-    req.session.username = username
+  # アカウント更新時
+  else
+    query.username = username
 
-    query =
-      'username': username
+  user.find(query, (err, data) ->
+    query = {}
 
-    data[0].update(query, (err, data) ->
+    if req.body.username?
+      query.username = req.body.username
+    if req.body.email?
+      query.email = req.body.email
+    if req.body.password?
+      query.password = req.body.password
+
+    target = data[0]
+
+    target.update(query, (err, data) ->
       if err
         console.log err
       else
+        req.session.username = if req.body.username then req.body.username else target.username
+        req.session.email = if req.body.email then req.body.email else target.email
+        req.session.password = if req.body.password then req.body.password else target.password
         res.redirect '/main'
     )
   )
@@ -79,6 +96,36 @@ exports.show = (req, res) ->
     else
       res.render 'account/index',
         title: 'Account Information'
+        username: username
+        email: email
+        password: password
+  )
+
+# アカウント情報変更
+exports.edit = (req, res) ->
+  username = req.session.username
+  email = req.session.email
+  password = req.session.password
+
+  query =
+    'username': username
+    'email': email
+    'password': password
+
+  user.find(query, (err, data) ->
+    console.log data
+    username = data[0].username
+    req.session.username = username
+    email = data[0].email
+    req.session.email = email
+    password = data[0].password
+    req.session.password = password
+
+    if err
+      console.log err
+    else
+      res.render 'account/edit',
+        title: 'Account Edit'
         username: username
         email: email
         password: password

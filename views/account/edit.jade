@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h1= title
+
+  form(method='post', action='/'+username)
+    dl
+      dt username
+      dd
+        input(type='text', name='username' value!=username)
+    dl
+      dt email
+        input(type='email', name='email' value!=email)
+    dl
+      dt password
+        input(type='text', name='password' value!=password)
+
+    input(type='hidden', name='_method', value='put')
+    input(type='submit' value='update')
+
+  p
+    a(href='/'+username) Go back
+
+  form(method='post', action='/logout')
+    input(type='submit', value='Logout')

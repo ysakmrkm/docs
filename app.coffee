@@ -66,6 +66,7 @@ app.get '/', routes.index
 app.post '/add', account.add
 app.get '/account/new', account.first
 app.put '/account/save', account.update
+app.get '/account/:username(*+)', account.edit
 app.post '/login', status.login
 app.post '/logout', status.logout
 app.get '/main', routes.main
@@ -77,6 +78,7 @@ app.post '/files/create', files.create
 app.put '/files/:docId', files.update
 app.delete '/files/:docId', files.destroy
 app.get '/:username(*+)', account.show
+app.put '/:username(*+)', account.update
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
