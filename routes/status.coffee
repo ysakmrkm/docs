@@ -18,7 +18,9 @@ exports.login = (req, res) ->
       console.log err
 
     if Object.keys(data).length isnt 0
-      req.session.email = email
+      req.session.username = data[0].username
+      req.session.email = data[0].email
+      req.session.password = data[0].password
       res.redirect '/main'
     else
       req.session.destroy()
