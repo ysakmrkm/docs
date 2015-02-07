@@ -11,7 +11,9 @@ db = mongoose.createConnection(url,
 
 UserSchema = new mongoose.Schema({
     username: String
-    email: String
+    email:
+      type: String
+      unique: true
     password: String
   }
   { collection: 'info' }

@@ -14,6 +14,9 @@ exports.add = (req, res) ->
   newUser.save (err) ->
     if err
       console.log err
+      if err.code is 11000
+        console.log 'Email is already used'
+        res.redirect '/?error=1'
     else
       email = req.param 'email'
       req.session.email = email
@@ -37,12 +40,16 @@ exports.update = (req, res) ->
     'password': password
 
   user.find(query, (err, data) ->
-    data[0].username = req.body.username
-    req.session.username = data[0].username
+    username = req.body.username
+    req.session.username = username
 
-    data[0].save (err, data) ->
+    query =
+      'username': username
+
+    data[0].update(query, (err, data) ->
       if err
         console.log err
       else
         res.redirect '/main'
+    )
   )

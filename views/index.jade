@@ -11,21 +11,21 @@ block content
       input(type='submit', value='Logout')
         
   else
+    p What's your name?
+
+    h2 add
+
     if error
       p= error
-    else
-      p What's your name?
 
-      h2 add
+    form(method='post', action='/add')
+      input(type='email', name='email', placeholder='Enter your email address' required='required')
+      input(type='password', name='password', placeholder='Enter your password' required='required')
+      input(type='submit', value='OK')
 
-      form(method='post', action='/add')
-        input(type='email', name='email', placeholder='Enter your email address' required='required')
-        input(type='password', name='password', placeholder='Enter your password' required='required')
-        input(type='submit', value='OK')
+    h2 login
 
-      h2 login
-
-      form(method='post', action='/login')
-        input(type='email', name='email', placeholder='Enter your email address' required='required')
-        input(type='password', name='password', placeholder='Enter your password' required='required')
-        input(type='submit', value='OK')
+    form(method='post', action='/login')
+      input(type='email', name='email', placeholder='Enter your email address' required='required')
+      input(type='password', name='password', placeholder='Enter your password' required='required')
+      input(type='submit', value='OK')

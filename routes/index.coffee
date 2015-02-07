@@ -10,14 +10,19 @@ exports.index = (req, res) ->
   username = req.session.username
   email = req.session.email
   password = req.session.password
+  error = req.query.error
 
   if username?  and email? and password?
     res.redirect '/main'
 
   else
     res.render "index",
-      title: "Index"
-      email: email
+      if error
+        title: "Index"
+        error: 'Email is already used'
+      else
+        title: "Index"
+        email: email
 
 # メインページ
 exports.main = (req, res) ->
