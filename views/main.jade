@@ -19,5 +19,9 @@ block content
     li
       a(href='/files/new/') new
 
-  form(method='post', action='/logout')
-    input(type='submit', value='Logout')
+  ul
+    li
+      form(method='post', action='/logout')
+        input(type='submit', value='Logout')
+    li
+      a(href='/'+username) account

@@ -53,3 +53,33 @@ exports.update = (req, res) ->
         res.redirect '/main'
     )
   )
+
+# アカウントページ
+exports.show = (req, res) ->
+  username = req.session.username
+  email = req.session.email
+  password = req.session.password
+
+  query =
+    'username': username
+    'email': email
+    'password': password
+
+  user.find(query, (err, data) ->
+    console.log data
+    username = data[0].username
+    req.session.username = username
+    email = data[0].email
+    req.session.email = email
+    password = data[0].password
+    req.session.password = password
+
+    if err
+      console.log err
+    else
+      res.render 'account/index',
+        title: 'Account Information'
+        username: username
+        email: email
+        password: password
+  )

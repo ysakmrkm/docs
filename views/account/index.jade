@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1= title
+
+  dl
+    dt username
+    dd #{username}
+  dl
+    dt email
+    dd #{email}
+  dl
+    dt password
+    dd #{password}
+
+  p
+    a(href='/account/'+username) [edit]
+
+  p
+    a(href='/main') Go back
+
+  form(method='post', action='/logout')
+    input(type='submit', value='Logout')
