@@ -7,10 +7,17 @@ document = model.document
 
 # インデックス
 exports.index = (req, res) ->
+  username = req.session.username
   email = req.session.email
-  res.render "index",
-    title: "Index"
-    email: email
+  password = req.session.password
+
+  if username?  and email? and password?
+    res.redirect '/main'
+
+  else
+    res.render "index",
+      title: "Index"
+      email: email
 
 # メインページ
 exports.main = (req, res) ->
