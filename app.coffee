@@ -55,8 +55,8 @@ app.use(
 
 app.use(
   compass(
-    sass: __dirname + '/src/stylesheets'
-    css: __dirname + '/public/stylesheets'
+    sass: __dirname + '/src/sass'
+    css: __dirname + '/public/css'
     mode: 'compressed'
   )
 )
