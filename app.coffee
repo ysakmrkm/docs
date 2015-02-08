@@ -50,6 +50,8 @@ app.use(
       host: 'localhost'
       clear_interval: 60 * 60
     )
+    cookie:
+      maxAge: 1000 * 24 * 60 * 60 * 7
   )
 )
 
