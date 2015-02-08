@@ -1,31 +1,61 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/index.css')
 
-block content
-  h1= title
-  p Welcome to #{title}
+  body
+    div#container
+      div#content
+        main
+          article#main
+            div.box
+              div.box-inner
+                ul.tabs
+                  li.login.tab
+                    a(href='#login') Login
+                  li.signup.tab
+                      a(href='#signup' class=(error !== undefined ? 'active' : '')) Sign up
 
-  if email
-    p Welcome, #{email}.
+                div(class=(error === undefined ? 'active' : '')).box-item#login
+                  div.box-contents
+                    section.contents-inner
+                      h1.title Login
 
-    form(method='post', action='/logout')
-      input(type='submit', value='Logout')
-        
-  else
-    p What's your name?
+                      form(method='post', action='/login').form
+                        ul.form-list
+                          li.form-item
+                            input(type='email', name='email', required='required')#login-email.input-item
+                            label(for='login-email') Email
+                          li.form-item
+                            input(type='password', name='password', required='required')#login-password.input-item
+                            label(for='login-password') Password
 
-    h2 add
+                        ul.button-list
+                          li.button-item
+                            button(type='submit', name='action').button.waves-effect Enter
 
-    if error
-      p= error
+                div(class=(error !== undefined ? 'active' : '')).box-item#signup
+                  div.box-contents
+                    section.contents-inner
+                      h1.title Singn up
 
-    form(method='post', action='/add')
-      input(type='email', name='email', placeholder='Enter your email address' required='required')
-      input(type='password', name='password', placeholder='Enter your password' required='required')
-      input(type='submit', value='OK')
+                      if error
+                        p.error= error
 
-    h2 login
+                      form(method='post', action='/add').form
+                        ul.form-list
+                          li.form-item
+                            input(type='email', name='email', required='required')#signup-email.input-item
+                            label(for='signup-email') Email
+                          li.form-item
+                            input(type='password', name='password', required='required')#signup-password.input-item
+                            label(for='signup-password') Password
 
-    form(method='post', action='/login')
-      input(type='email', name='email', placeholder='Enter your email address' required='required')
-      input(type='password', name='password', placeholder='Enter your password' required='required')
-      input(type='submit', value='OK')
+                        ul.button-list
+                          li.button-item
+                            button(type='submit', name='action').button.waves-effect Enter
+
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/js/materialize.min.js')
+    script(src='js/index.js')

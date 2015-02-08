@@ -9,6 +9,9 @@ markdown = require('markdown').markdown
 
 # 新規作成
 exports.new = (req, res) ->
+  console.log '================================================'
+  console.log 'files.new'
+  console.log '================================================'
   email = req.session.email
 
   res.render "files/new",
@@ -16,6 +19,9 @@ exports.new = (req, res) ->
 
 # ドキュメント作成・保存
 exports.create = (req, res) ->
+  console.log '================================================'
+  console.log 'files.create'
+  console.log '================================================'
   email = req.session.email
 
   query =
@@ -36,10 +42,12 @@ exports.create = (req, res) ->
 
 # ドキュメント表示
 exports.show = (req, res) ->
+  console.log '================================================'
+  console.log 'files.show'
+  console.log '================================================'
   docId = req.params.docId
 
   document.findById(docId, (err, data) ->
-    console.log data
     res.render "files/show",
       title: data.title
       body: markdown.toHTML(data.document)
@@ -47,6 +55,9 @@ exports.show = (req, res) ->
 
 # ドキュメント編集
 exports.edit = (req, res) ->
+  console.log '================================================'
+  console.log 'files.edit'
+  console.log '================================================'
   docId = req.params.docId
 
   document.findById(docId, (err, data) ->
@@ -58,6 +69,9 @@ exports.edit = (req, res) ->
 
 # ドキュメント更新
 exports.update = (req, res) ->
+  console.log '================================================'
+  console.log 'files.update'
+  console.log '================================================'
   docId = req.params.docId
 
   document.findById(docId, (err, data) ->

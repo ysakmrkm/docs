@@ -2,10 +2,10 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/css/materialize.css')
-    link(rel='stylesheet', href='/css/style.css')
+    block head
   body
     block content
 
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     script(src='/js/materialize.min.js')
+    block script

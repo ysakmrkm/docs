@@ -6,6 +6,9 @@ user = model.user
 
 # 追加
 exports.add = (req, res) ->
+  console.log '================================================'
+  console.log 'account.add'
+  console.log '================================================'
   if req.body.email is '' or req.body.password is ''
     res.redirect '/'
   else
@@ -27,12 +30,17 @@ exports.add = (req, res) ->
 
 # 初回設定
 exports.first = (req, res) ->
+  console.log '================================================'
+  console.log 'account.first'
+  console.log '================================================'
   res.render "account/new",
     title: 'Profile'
 
 # アカウント更新
 exports.update = (req, res) ->
-
+  console.log '================================================'
+  console.log 'account.update'
+  console.log '================================================'
   username = req.session.username
   email = req.session.email
   password = req.session.password
@@ -73,6 +81,9 @@ exports.update = (req, res) ->
 
 # アカウントページ
 exports.show = (req, res) ->
+  console.log '================================================'
+  console.log 'account.show'
+  console.log '================================================'
   username = req.session.username
   email = req.session.email
   password = req.session.password
@@ -83,7 +94,6 @@ exports.show = (req, res) ->
     'password': password
 
   user.find(query, (err, data) ->
-    console.log data
     username = data[0].username
     req.session.username = username
     email = data[0].email
@@ -103,6 +113,9 @@ exports.show = (req, res) ->
 
 # アカウント情報変更
 exports.edit = (req, res) ->
+  console.log '================================================'
+  console.log 'account.edit'
+  console.log '================================================'
   username = req.session.username
   email = req.session.email
   password = req.session.password
@@ -113,7 +126,6 @@ exports.edit = (req, res) ->
     'password': password
 
   user.find(query, (err, data) ->
-    console.log data
     username = data[0].username
     req.session.username = username
     email = data[0].email

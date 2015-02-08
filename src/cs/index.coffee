@@ -1,0 +1,4 @@
+$ ->
+  $('.tabs').tabs()
+
+  return

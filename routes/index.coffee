@@ -7,6 +7,9 @@ document = model.document
 
 # インデックス
 exports.index = (req, res) ->
+  console.log '================================================'
+  console.log 'index'
+  console.log '================================================'
   username = req.session.username
   email = req.session.email
   password = req.session.password
@@ -26,6 +29,9 @@ exports.index = (req, res) ->
 
 # メインページ
 exports.main = (req, res) ->
+  console.log '================================================'
+  console.log 'main'
+  console.log '================================================'
   username = req.session.username
   email = req.session.email
   password = req.session.password
@@ -36,7 +42,6 @@ exports.main = (req, res) ->
     'password': password
 
   user.find(query, (err, data) ->
-    console.log data
     id = String(data[0]['_id'])
 
     query =

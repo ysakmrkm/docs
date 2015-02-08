@@ -6,6 +6,9 @@ user = model.user
 
 # ログイン
 exports.login = (req, res) ->
+  console.log '================================================'
+  console.log 'login'
+  console.log '================================================'
   email = req.param 'email'
   password = req.param 'password'
 
@@ -29,6 +32,9 @@ exports.login = (req, res) ->
 
 # ログアウト
 exports.logout = (req, res) ->
+  console.log '================================================'
+  console.log 'logout'
+  console.log '================================================'
   req.session.destroy()
   res.clearCookie 'connect.sid',
     path: '/'
