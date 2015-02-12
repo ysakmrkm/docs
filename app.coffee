@@ -71,6 +71,7 @@ app.put '/account/save', account.update
 app.get '/account/:username(*+)', account.edit
 app.post '/login', status.login
 app.post '/logout', status.logout
+app.get '/logout', status.logout
 app.get '/main', routes.main
 app.get '/files/new', files.new
 app.post '/files/create', files.create

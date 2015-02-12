@@ -1,0 +1,250 @@
+//変数インクルード
+@import 'core';
+
+// Materialize
+// Mixins
+@import "components/prefixer";
+@import "components/mixins";
+@import "components/color";
+
+// Variables
+@import "components/variables";
+
+// Reset
+@import "components/normalize";
+
+// Componentes
+@import "components/global";
+@import "components/icons-material-design";
+@import "components/grid";
+@import "components/navbar";
+@import "components/roboto";
+@import "components/typography";
+//@import "components/cards";
+//@import "components/toast";
+//@import "components/tabs";
+//@import "components/tooltip";
+@import "components/buttons";
+@import "components/dropdown";
+@import "components/waves";
+//@import "components/modal";
+//@import "components/collapsible";
+//@import "components/materialbox";
+@import "components/form";
+//@import "components/table_of_contents";
+//@import "components/sideNav";
+//@import "components/preloader";
+//@import "components/slider";
+//@import "components/date_picker/default.scss";
+//@import "components/date_picker/default.date.scss";
+//@import "components/date_picker/default.time.scss";
+
+// Compass
+@import 'compass';
+/*----------------------------------------------------------------------
+------------------------------------------------------------------------
+
+File Name:
+Note:
+
+
+New Creation:	.
+Last Change:	.
+
+
+Created By		ysakmrkm
+
+------------------------------------------------------------------------
+----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
+------------------------------------------------------------------------
+目次
+
+1.	共通使用変数定義
+2.	ブラウザデフォルトスタイルリセット
+3.	HTMLタグ
+4.	container
+5.	共通部分
+6.	header
+7.	content
+8.	main
+9.	sub
+10.	footer
+11.	ページ別個別設定
+
+------------------------------------------------------------------------
+----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
+1.	共通使用変数定義
+----------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------
+2.	ブラウザデフォルトスタイルリセット
+----------------------------------------------------------------------*/
+//@include reset;
+//compass
+//@include reset-html5;
+//オリジナル
+//@include resethtml5;
+
+
+/*----------------------------------------------------------------------
+3.	HTMLタグ
+----------------------------------------------------------------------*/
+@include layout-tags;
+
+
+/*----------------------------------------------------------------------
+4.	container
+----------------------------------------------------------------------*/
+@include layout-container;
+
+#container {
+	min-height: 1px;
+	height: 100%;
+}
+
+/*----------------------------------------------------------------------
+5.	共通部分
+----------------------------------------------------------------------*/
+@include common;
+
+
+/*----------------------------------------------------------------------
+6.	#header
+----------------------------------------------------------------------*/
+@include layout-header;
+
+#header {
+	@extend .row;
+	margin: 0;
+}
+
+.h-nav-bar {
+	@include box-shadow(none);
+	@extend .grey.lighten-1;
+	overflow: hidden;
+}
+
+.nav {
+	@extend .nav-wrapper;
+
+	.nav-inner {
+		@extend .col;
+		@extend .s12;
+	}
+}
+
+.logo {
+	@extend .brand-logo;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+
+/*----------------------------------------------------------------------
+7.	#content
+----------------------------------------------------------------------*/
+@include layout-content;
+
+#content {
+	@extend .row;
+	height: calc(100% - #{$navbar-height-mobile});
+	margin: 0;
+}
+
+@media #{$medium-and-up} {
+	#content {
+		height: calc(100% - #{$navbar-height});
+	}
+}
+
+
+/*----------------------------------------------------------------------
+8.	#main
+----------------------------------------------------------------------*/
+@include layout-main;
+
+#main {
+	@extend .col;
+	@extend .s12;
+	height: 100%;
+	background: #fff;
+}
+
+main {
+	height: 100%;
+}
+
+h1 ,
+h2 ,
+h3 ,
+h4 ,
+h5 ,
+h6 {
+	&.title {
+		border-bottom: 1px solid color('grey', 'base');
+	}
+}
+
+.doc-list {
+	@extend .collection;
+}
+
+.doc-item {
+	@extend .collection-item;
+	@extend a.collection-item;
+
+	.item-contents {
+		@extend .secondary-content;
+		margin-left: 15px;
+		cursor:pointer;
+
+		i {
+			float: left;
+
+			&:before {
+				margin-right: 5px;
+			}
+		}
+
+		input {
+			margin: 0;
+			padding: 0;
+			border: none;
+			background: none;
+		}
+	}
+}
+
+.button {
+	@extend .btn-flat;
+	@extend .btn-large;
+	@extend .teal.lighten-2;
+	@extend .waves-light;
+	@extend .white-text;
+
+	&:hover {
+		@include box-shadow(none);
+	}
+}
+
+
+/*----------------------------------------------------------------------
+9.	#sub
+----------------------------------------------------------------------*/
+@include layout-sub;
+
+
+/*----------------------------------------------------------------------
+10.	#footer
+----------------------------------------------------------------------*/
+@include layout-footer;
+
+
+/*----------------------------------------------------------------------
+11.	ページ別個別設定
+----------------------------------------------------------------------*/

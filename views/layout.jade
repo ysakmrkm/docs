@@ -4,7 +4,34 @@ html
     title= title
     block head
   body
-    block content
+    div#container
+      header#header
+        nav.h-nav-bar
+          div.nav
+            div.nav-inner
+              a.logo Logo
+
+              ul.hide-on-med-and-down
+                li
+                  a(href="files/new/")
+                    i.mdi-content-add
+                li
+                  a(href="#!", data-beloworigin="true", data-activates="h-account").dropdown-button
+                    i.mdi-action-account-box
+
+              ul#h-account.dropdown-content
+                li
+                  a(href='/'+username) Profile
+                li.divider
+                li
+                  a(href="/logout") Log Out
+
+      div#content
+        main
+          article#main
+            block main
+
+        block sub
 
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     script(src='/js/materialize.min.js')

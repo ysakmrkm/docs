@@ -51,9 +51,13 @@ exports.main = (req, res) ->
       documents = data
 
       res.render "main",
-        title: "Main"
-        username: username
-        documents: documents
+        if Object.keys(documents).length isnt 0
+          title: "Main"
+          username: username
+          documents: documents
+        else
+          title: "Main"
+          username: username
     )
   )
 

@@ -1,27 +1,29 @@
 extends layout
 
-block content
-  h1= title
+block head
+  link(rel='stylesheet', href='/css/main.css')
 
-  p Welcome #{username}
+block main
+  section.list.box
+    h1.box-title.title Documents
 
-  if documents
-    ul
-      each document, index in documents
-        li
-          a(href='/files/'+document._id)= document.title
-          a(href='/files/'+document._id+'/edit') [edit]
-          form(method='post', action='/files/'+document._id)
-            input(type='hidden', name='_method', value='delete')
-            input(type='submit' value='remove')
+    if documents
+      ul.doc-list
+        each document, index in documents
+          li.doc-item
+            a(href='/files/'+document._id) #{document.title}
+            a(href='/files/'+document._id+'/edit').edit.item-contents Edit
+              i.mdi-editor-mode-edit
+            form(method='post', action='/files/'+document._id).delete.item-contents
+              input(type='hidden', name='_method', value='delete')
+              input(type='submit' value='Delete')
+              i.mdi-action-delete
+    else
+      p Write a new document.
 
-  ul
-    li
-      a(href='/files/new/') new
+    p
+      a(href='/files/new').button.waves-effect Write
+        i.mdi-editor-mode-edit.left
 
-  ul
-    li
-      form(method='post', action='/logout')
-        input(type='submit', value='Logout')
-    li
-      a(href='/'+username) account
+block script
+  script(src='js/main.js')
