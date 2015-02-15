@@ -137,7 +137,7 @@ exports.edit = (req, res) ->
       console.log err
     else
       res.render 'account/edit',
-        title: 'Account Edit'
+        title: 'Edit account'
         username: username
         email: email
         password: password

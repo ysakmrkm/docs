@@ -193,6 +193,15 @@ main {
 	}
 }
 
+.form {
+	height: 100%;
+}
+
+.form-item {
+	@extend .input-field;
+	margin: 0;
+}
+
 .button-list {
 	@include pie-clearfix;
 	margin-bottom: 0;
