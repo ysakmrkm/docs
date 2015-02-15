@@ -105,7 +105,7 @@ exports.show = (req, res) ->
       console.log err
     else
       res.render 'account/index',
-        title: 'Account Information'
+        title: 'Account information'
         username: username
         email: email
         password: password

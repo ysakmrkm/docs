@@ -1,23 +1,31 @@
 extends ../layout
 
-block content
-  h1= title
+block head
+  link(rel='stylesheet', href='/css/account.css')
 
-  dl
-    dt username
-    dd #{username}
-  dl
-    dt email
-    dd #{email}
-  dl
-    dt password
-    dd #{password}
+block main
+  h1.title= title
 
-  p
-    a(href='/account/'+username) [edit]
+  div.body
+    table
+      tbody
+        tr.username
+          th Username
+          td #{username}
+        tr.email
+          th Email
+          td #{email}
+        tr.password
+          th Password
+          td ******
 
-  p
-    a(href='/main') Go back
+  ul.button-list
+    li.button-item.edit
+      a(href='/account/'+username).button.waves-effect Edit
+        i.mdi-editor-mode-edit.left
+    li.button-item.back
+      a(href="/main").button.waves-effect Go back
+        i.mdi-navigation-arrow-back.left
 
-  form(method='post', action='/logout')
-    input(type='submit', value='Logout')
+block script
+  script(src='/js/account.js')
