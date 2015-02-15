@@ -14,7 +14,7 @@ exports.new = (req, res) ->
   console.log '================================================'
   email = req.session.email
 
-  res.render "files/new",
+  res.render "files/editor",
     title: "Create new file"
 
 # ドキュメント作成・保存
@@ -61,10 +61,11 @@ exports.edit = (req, res) ->
   docId = req.params.docId
 
   document.findById(docId, (err, data) ->
-    res.render "files/edit",
+    res.render "files/editor",
+      title: 'Edit '+data.title
       id: data._id
-      title: data.title
-      body: data.document
+      docTitle: data.title
+      docBody: data.document
   )
 
 # ドキュメント更新
