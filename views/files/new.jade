@@ -1,39 +1,28 @@
 extends ../layout
 
-block content
-  h1= title
+block head
+  link(rel='stylesheet', href='/css/editor.css')
 
-  p new
-  
-  form(method='post', action='/files/create')
-    input(type='text' name='title')
-    textarea#markdown.edit(rows='10', cols='30', name='document' oninput='this.editor.update()')
+block main
+  form(method='post', action='/files/create').form
+    p.title.form-item
+      input(type='text' name='title' required='reqired')#title
+      label(for='title') Title
 
-    div#preview
+    div.body.form-item
+      textarea(rows='10', cols='30', name='document' required='reqired' oninput='this.editor.update()')#markdown.item-contents
+      label(for='markdown') Text
 
-    input(type='submit' value='save')
+      div#preview.item-contents
 
+    ul.button-list
+      li.button-item.save
+        button(type='submit', name='save').button.waves-effect Create
+          i.mdi-editor-insert-drive-file.left
+      li.button-item.back
+        a(href="/main").button.waves-effect Go back
+          i.mdi-navigation-arrow-back.left
+
+block script
   script(src='/js/markdown.js')
-  script
-    :coffee
-      Editor = (input, preview) ->
-        @update = ->
-          preview.innerHTML = markdown.toHTML(input.value);
-          return
-
-        input.editor = this
-
-        @update()
-
-      $ = (id) ->
-        return document.getElementById(id)
-
-      new Editor($("markdown"), $("preview"));
-
-      return
-
-  p
-    a(href="/main") Go back
-
-  form(method='post', action='/logout')
-    input(type='submit', value='Logout')
+  script(src='/js/editor.js')
