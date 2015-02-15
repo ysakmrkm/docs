@@ -1,12 +1,18 @@
 extends ../layout
 
-block content
-  h1= title
+block head
+  link(rel='stylesheet', href='/css/show.css')
 
-  p!= body
+block main
+  h1.title= docTitle
 
-  p
-    a(href="/main") Go back
+  div.body
+    !{docBody}
 
-  form(method='post', action='/logout')
-    input(type='submit', value='Logout')
+  ul.button-list
+    li.button-item.edit
+      a(href="/files/#{id}/edit").button.waves-effect Edit
+        i.mdi-editor-mode-edit.left
+    li.button-item.back
+      a(href="/main").button.waves-effect Go back
+        i.mdi-navigation-arrow-back.left

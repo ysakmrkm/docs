@@ -50,7 +50,9 @@ exports.show = (req, res) ->
   document.findById(docId, (err, data) ->
     res.render "files/show",
       title: data.title
-      body: markdown.toHTML(data.document)
+      id: data._id
+      docTitle: data.title
+      docBody: markdown.toHTML(data.document)
   )
 
 # ドキュメント編集
