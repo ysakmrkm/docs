@@ -1,12 +1,30 @@
-extends ../layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/index.css')
 
-block content
-  h1= title
+  body
+    div#container
+      div#content
+        main
+          article#main
+            div.box
+              div.box-inner
+                div#add-username.box-item.active
+                  div.box-contents
+                    section.contents-inner
+                      h3.title  Input your username
 
-  p Add your username
+                      form(method='post', action='/account/save').form
+                        p.form-item
+                          input(type='text' name='username' required='required')#username.input-item
+                          label(for='username') Username
 
-  form(method='post', action='/account/save')
-    input(type='text' name='username' placeholder='Enter your username' required='required')
+                        ul.button-list
+                          li.button-item
+                            input(type='hidden', name='_method', value='put')
+                            button(type='submit', name='save').button.waves-effect Save
 
-    input(type='hidden', name='_method', value='put')
-    input(type='submit' value='save')
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/js/materialize.min.js')
