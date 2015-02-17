@@ -27,7 +27,7 @@
 @import "components/buttons";
 @import "components/dropdown";
 @import "components/waves";
-//@import "components/modal";
+@import "components/modal";
 //@import "components/collapsible";
 //@import "components/materialbox";
 @import "components/form";
@@ -220,6 +220,26 @@ h6 {
 	}
 }
 
+.modal {
+	.button {
+		margin: 0;
+	}
+
+	.agree {
+		float: right;
+	}
+
+	.disagree {
+		.button {
+			@extend .grey;
+		}
+	}
+}
+
+.button-list {
+	margin: 0;
+}
+
 .button {
 	@extend .btn-flat;
 	@extend .btn-large;
@@ -231,6 +251,8 @@ h6 {
 		@include box-shadow(none);
 	}
 }
+
+
 
 
 /*----------------------------------------------------------------------

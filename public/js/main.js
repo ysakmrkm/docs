@@ -5,8 +5,12 @@ $(function() {
     alignment: 'right',
     belowOrigin: true
   });
-  $('.delete').on('click', function() {
-    return $(this).submit();
+  $('.delete').leanModal();
+  $('.agree button').on('click', function() {
+    return $(this).parents('form').submit();
+  });
+  $('.modal .button').on('click', function() {
+    return $(this).parents('.modal').closeModal();
   });
 });
 

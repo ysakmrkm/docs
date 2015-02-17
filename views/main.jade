@@ -14,10 +14,27 @@ block main
             a(href='/files/'+document._id) #{document.title}
             a(href='/files/'+document._id+'/edit').edit.item-contents Edit
               i.mdi-editor-mode-edit
-            form(method='post', action='/files/'+document._id).delete.item-contents
-              input(type='hidden', name='_method', value='delete')
-              input(type='submit' value='Delete')
+            a(href='#modal-delete'+index).delete.item-contents Delete
               i.mdi-action-delete
+            
+      each document, index in documents
+        section(id='modal-delete'+index).modal
+          div.modal-body
+            h2.title Delete
+              
+            p Are you sure to delete 
+              strong #{document.title}
+              |  ?
+            
+          footer.modal-footer
+            ul.button-list
+              li.button-item.agree
+                form(method='post', action='/files/'+document._id)
+                  input(type='hidden', name='_method', value='delete')
+                  button(type='submit', name='delete').button.waves-effect Agree
+              li.button-item.disagree
+                a.button.waves-effect Disagree
+                
     else
       p Write a new document.
 

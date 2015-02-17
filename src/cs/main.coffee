@@ -6,8 +6,14 @@ $ ->
     belowOrigin: true
   )
 
-  $('.delete').on('click', ->
-    $(this).submit()
+  $('.delete').leanModal()
+
+  $('.agree button').on('click', ->
+    $(this).parents('form').submit()
+  )
+
+  $('.modal .button').on('click', ->
+    $(this).parents('.modal').closeModal()
   )
 
   return
