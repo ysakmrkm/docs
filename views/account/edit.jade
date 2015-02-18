@@ -15,8 +15,11 @@ block main
         input(type='email', name='email', value!=email, required='required')#email
         label(for='email') Email
       p.password.form-item
-        input(type='text', name='password', value!=password, required='required')#password
-        label(for='password') Password
+        input(type='text', name='password')#password
+        label(for='password') New password
+      p.password-re.password.form-item
+        input(type='password', name='password-re')#password-re
+        label(for='password-re') Re type new password
 
     ul.button-list
       li.button-item.save
@@ -26,3 +29,6 @@ block main
       li.button-item.back
         a(href="/"+username).button.waves-effect Go back
           i.mdi-navigation-arrow-back.left
+
+block script
+  script(src='/js/account.js')
