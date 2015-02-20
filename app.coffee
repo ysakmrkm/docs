@@ -65,6 +65,11 @@ app.use(
 
 # ルーティング
 app.get '/', routes.index
+app.get '/favicon.ico', (req, res, next) ->
+  #temporarily skip favicon.ico access
+  console.log '================================================'
+  console.log 'favicon'
+  console.log '================================================'
 app.post '/add', account.add
 app.get '/account/new', account.first
 app.put '/account/save', account.update
