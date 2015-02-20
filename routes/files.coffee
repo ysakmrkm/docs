@@ -30,6 +30,8 @@ exports.create = (req, res) ->
   user.find(query, (err, data) ->
     id = String(data[0]['_id'])
     req.body.userId = id
+    req.body.date = {}
+    req.body.date.create = new Date()
 
     newDocument = new document(req.body)
 
@@ -80,6 +82,7 @@ exports.update = (req, res) ->
   document.findById(docId, (err, data) ->
     data.title = req.body.title
     data.document = req.body.document
+    data.date.modified = new Date()
 
     data.save (err, data) ->
       if err
