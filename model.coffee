@@ -23,6 +23,9 @@ DocumentSchema = new mongoose.Schema({
     userId: String
     title: String
     document: String
+    date:
+      create: Date
+      modified: Date
   }
   { collection: 'document' }
 )
