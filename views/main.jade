@@ -8,14 +8,32 @@ block main
     h1.box-title.title Documents
 
     if documents
-      ul.doc-list
-        each document, index in documents
-          li.doc-item
-            a(href='/files/'+document._id) #{document.title}
-            a(href='/files/'+document._id+'/edit').edit.item-contents Edit
-              i.mdi-editor-mode-edit
-            a(href='#modal-delete'+index).delete.item-contents Delete
-              i.mdi-action-delete
+      table.doc-table
+        thead.head
+          tr
+            th(scope='col', data-field='title').title Title
+            th(scope='col', data-field='create').date.create Create
+            th(scope='col', data-field='modified').date.modified Last modified 
+            td.empty
+        tbody.body
+          each document, index in documents
+            tr.items
+              th(scope='row').title
+                a(href='/files/'+document._id) #{document.title}
+              td.date.create #{document.date.create.getFullYear()+'/'+('0'+(document.date.create.getMonth()+1)).slice(-2)+'/'+('0'+document.date.create.getDate()).slice(-2)+' '+('0'+document.date.create.getHours()).slice(-2)+':'+('0'+document.date.create.getMinutes()).slice(-2)+':'+('0'+document.date.create.getSeconds()).slice(-2)}
+              td.date.modified
+                if document.date.modified
+                  | #{document.date.modified.getFullYear()+'/'+('0'+(document.date.modified.getMonth()+1)).slice(-2)+'/'+('0'+document.date.modified.getDate()).slice(-2)+' '+('0'+document.date.modified.getHours()).slice(-2)+':'+('0'+document.date.modified.getMinutes()).slice(-2)+':'+('0'+document.date.modified.getSeconds()).slice(-2)}
+                else
+                  | #{document.date.create.getFullYear()+'/'+('0'+(document.date.create.getMonth()+1)).slice(-2)+'/'+('0'+document.date.create.getDate()).slice(-2)+' '+('0'+document.date.create.getHours()).slice(-2)+':'+('0'+document.date.create.getMinutes()).slice(-2)+':'+('0'+document.date.create.getSeconds()).slice(-2)}
+              td.func
+                ul.func-list
+                  li.func-item
+                    a(href='#modal-delete'+index).delete.item-contents.waves-effect Delete
+                      i.mdi-action-delete
+                  li.func-item
+                    a(href='/files/'+document._id+'/edit').edit.item-contents.waves-effect Edit
+                      i.mdi-editor-mode-edit
             
       each document, index in documents
         section(id='modal-delete'+index).modal

@@ -190,32 +190,39 @@ h6 {
 	}
 }
 
-.doc-list {
-	@extend .collection;
+.doc-table {
+	@extend .bordered;
+	@extend .hoverable;
+	@extend .responsive-table;
 }
 
-.doc-item {
-	@extend .collection-item;
-	@extend a.collection-item;
+.func-list {
+	margin: 0;
+	text-align: right;
+	height: 36px;
+	line-height: 36px;
+}
+
+.func-item {
+	display: inline-block;
+	height: 36px;
+	line-height: 36px;
 
 	.item-contents {
-		@extend .secondary-content;
-		margin-left: 15px;
-		cursor:pointer;
+		@extend .btn-flat;
+		@extend .waves-light;
+		margin: 0;
+	}
 
-		i {
-			float: left;
+	a {
+		@extend .teal-text.text-lighten-1;
+	}
 
-			&:before {
-				margin-right: 5px;
-			}
-		}
+	i {
+		float: left;
 
-		input {
-			margin: 0;
-			padding: 0;
-			border: none;
-			background: none;
+		&:before {
+			margin-right: 5px;
 		}
 	}
 }

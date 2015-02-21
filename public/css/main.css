@@ -1011,7 +1011,7 @@
   background-color: #26a69a !important;
 }
 
-.teal-text.text-lighten-1 {
+.teal-text.text-lighten-1, .func-item a {
   color: #26a69a !important;
 }
 
@@ -2774,20 +2774,20 @@ table {
   width: 100%;
   display: table;
 }
-table.bordered tr {
+table.bordered tr, table.doc-table tr {
   border-bottom: 1px solid #d0d0d0;
 }
 table.striped tbody tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
-table.hoverable tbody tr {
+table.hoverable tbody tr, table.doc-table tbody tr {
   -webkit-transition: background-color 0.25s ease;
   -moz-transition: background-color 0.25s ease;
   -o-transition: background-color 0.25s ease;
   -ms-transition: background-color 0.25s ease;
   transition: background-color 0.25s ease;
 }
-table.hoverable tbody tr:hover {
+table.hoverable tbody tr:hover, table.doc-table tbody tr:hover {
   background-color: #f2f2f2;
 }
 table.centered thead tr th, table.centered tbody tr td {
@@ -2807,7 +2807,7 @@ td, th {
 }
 
 @media only screen and (max-width: 992px) {
-  table.responsive-table {
+  table.responsive-table, table.doc-table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
@@ -2815,85 +2815,86 @@ td, th {
     position: relative;
     /* sort out borders */
   }
-  table.responsive-table th,
-  table.responsive-table td {
+  table.responsive-table th, table.doc-table th,
+  table.responsive-table td,
+  table.doc-table td {
     margin: 0;
     vertical-align: top;
   }
-  table.responsive-table th {
+  table.responsive-table th, table.doc-table th {
     text-align: left;
   }
-  table.responsive-table thead {
+  table.responsive-table thead, table.doc-table thead {
     display: block;
     float: left;
   }
-  table.responsive-table thead tr {
+  table.responsive-table thead tr, table.doc-table thead tr {
     display: block;
     padding: 0 10px 0 0;
   }
-  table.responsive-table tbody {
+  table.responsive-table tbody, table.doc-table tbody {
     display: block;
     width: auto;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
   }
-  table.responsive-table tbody tr {
+  table.responsive-table tbody tr, table.doc-table tbody tr {
     display: inline-block;
     vertical-align: top;
   }
-  table.responsive-table th {
+  table.responsive-table th, table.doc-table th {
     display: block;
     text-align: right;
   }
-  table.responsive-table td {
+  table.responsive-table td, table.doc-table td {
     display: block;
     min-height: 1.25em;
     text-align: left;
   }
-  table.responsive-table tr {
+  table.responsive-table tr, table.doc-table tr {
     padding: 0 10px;
   }
-  table.responsive-table thead {
+  table.responsive-table thead, table.doc-table thead {
     border: 0;
     border-right: 1px solid #d0d0d0;
   }
-  table.responsive-table.bordered th {
+  table.responsive-table.bordered th, table.doc-table th {
     border-bottom: 0;
     border-left: 0;
   }
-  table.responsive-table.bordered td {
+  table.responsive-table.bordered td, table.doc-table td {
     border-left: 0;
     border-right: 0;
     border-bottom: 0;
   }
-  table.responsive-table.bordered tr {
+  table.responsive-table.bordered tr, table.doc-table tr {
     border: 0;
   }
-  table.responsive-table.bordered tbody tr {
+  table.responsive-table.bordered tbody tr, table.doc-table tbody tr {
     border-right: 1px solid #d0d0d0;
   }
 }
-.collection, .doc-list {
+.collection {
   background-color: #fff;
   margin: 0.5rem 0 1rem 0;
   border: 1px solid #e0e0e0;
   border-radius: 2px;
 }
-.collection .collection-item, .doc-list .collection-item, .collection .doc-item, .doc-list .doc-item {
+.collection .collection-item {
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0px;
   border-bottom: 1px solid #e0e0e0;
 }
-.collection .collection-item:last-child, .doc-list .collection-item:last-child, .collection .doc-item:last-child, .doc-list .doc-item:last-child {
+.collection .collection-item:last-child {
   border-bottom: none;
 }
-.collection .collection-item.active, .doc-list .collection-item.active, .collection .active.doc-item, .doc-list .active.doc-item {
+.collection .collection-item.active {
   background-color: #26a69a;
   color: #eafaf9;
 }
-.collection a.collection-item, .doc-list a.collection-item, .collection .doc-item, .doc-list .doc-item {
+.collection a.collection-item {
   display: block;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -2902,43 +2903,43 @@ td, th {
   transition: 0.25s;
   color: #26a69a;
 }
-.collection a.collection-item:not(.active):hover, .doc-list a.collection-item:not(.active):hover, .collection .doc-item:not(.active):hover, .doc-list .doc-item:not(.active):hover {
+.collection a.collection-item:not(.active):hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
-.collection.with-header .collection-header, .with-header.doc-list .collection-header {
+.collection.with-header .collection-header {
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 20px;
 }
-.collection.with-header .collection-item, .with-header.doc-list .collection-item, .collection.with-header .doc-item, .with-header.doc-list .doc-item {
+.collection.with-header .collection-item {
   padding-left: 30px;
 }
-.collection.pagination, .pagination.doc-list {
+.collection.pagination {
   display: inline-block;
 }
-.collection.pagination ul, .pagination.doc-list ul {
+.collection.pagination ul {
   background-color: transparent;
   font-size: 0;
   display: inline-block;
 }
-.collection.pagination li, .pagination.doc-list li {
+.collection.pagination li {
   display: inline;
   font-weight: 500;
   margin: 0px;
   padding: 0px;
   font-size: 1rem;
 }
-.collection.pagination li a, .pagination.doc-list li a {
+.collection.pagination li a {
   padding: 0px 5px;
 }
-.collection.pagination li.active, .pagination.doc-list li.active {
+.collection.pagination li.active {
   background-color: #03a9f4;
   color: #FFF;
 }
-.collection.pagination li:hover, .pagination.doc-list li:hover {
+.collection.pagination li:hover {
   background-color: #e1f5fe;
 }
 
-.secondary-content, .doc-item .item-contents {
+.secondary-content {
   float: right;
   color: #26a69a;
 }
@@ -6928,7 +6929,7 @@ small {
   }
 }
 
-.btn, .btn-large, .button, .btn-flat, .button {
+.btn, .btn-large, .button, .btn-flat, .func-item .item-contents, .button {
   display: inline-block;
   height: 36px;
   margin-bottom: 15px;
@@ -6954,7 +6955,7 @@ small {
   color: #9F9F9F;
 }
 
-.btn i, .btn-large i, .button i, .btn-floating i, .btn-large i, .button i, .btn-flat i, .button i {
+.btn i, .btn-large i, .button i, .btn-floating i, .btn-large i, .button i, .btn-flat i, .func-item .item-contents i, .button i {
   font-size: 1.3rem;
   line-height: inherit;
 }
@@ -7013,13 +7014,13 @@ small {
   line-height: 55.5px;
 }
 
-.btn-flat, .button {
+.btn-flat, .func-item .item-contents, .button {
   box-shadow: none;
   background-color: transparent;
   color: #343434;
   cursor: pointer;
 }
-.btn-flat.disabled, .disabled.button {
+.btn-flat.disabled, .func-item .disabled.item-contents, .disabled.button {
   color: #b3b3b3;
 }
 
@@ -7109,7 +7110,7 @@ small {
   transform: scale(0);
   pointer-events: none;
 }
-.waves-effect.waves-light .waves-ripple, .waves-effect.button .waves-ripple {
+.waves-effect.waves-light .waves-ripple, .func-item .waves-effect.item-contents .waves-ripple, .waves-effect.button .waves-ripple {
   background-color: rgba(255, 255, 255, 0.45);
 }
 .waves-effect.waves-red .waves-ripple {
@@ -8089,21 +8090,26 @@ h6.title {
   border-bottom: 1px solid #9e9e9e;
 }
 
-.doc-item .item-contents {
-  margin-left: 15px;
-  cursor: pointer;
+.func-list {
+  margin: 0;
+  text-align: right;
+  height: 36px;
+  line-height: 36px;
 }
-.doc-item .item-contents i {
+
+.func-item {
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+}
+.func-item .item-contents {
+  margin: 0;
+}
+.func-item i {
   float: left;
 }
-.doc-item .item-contents i:before {
+.func-item i:before {
   margin-right: 5px;
-}
-.doc-item .item-contents input {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
 }
 
 .modal .button {
