@@ -13,7 +13,8 @@ block main
           tr
             th(scope='col', data-field='title').title Title
             th(scope='col', data-field='create').date.create Create
-            th(scope='col', data-field='modified').date.modified Last modified 
+            th(scope='col', data-field='modified').date.modified Last modified
+            th(scope='col', data-field='author').date.author Author
             td.empty
         tbody.body
           each document, index in documents
@@ -26,6 +27,8 @@ block main
                   | #{document.date.modified.getFullYear()+'/'+('0'+(document.date.modified.getMonth()+1)).slice(-2)+'/'+('0'+document.date.modified.getDate()).slice(-2)+' '+('0'+document.date.modified.getHours()).slice(-2)+':'+('0'+document.date.modified.getMinutes()).slice(-2)+':'+('0'+document.date.modified.getSeconds()).slice(-2)}
                 else
                   | #{document.date.create.getFullYear()+'/'+('0'+(document.date.create.getMonth()+1)).slice(-2)+'/'+('0'+document.date.create.getDate()).slice(-2)+' '+('0'+document.date.create.getHours()).slice(-2)+':'+('0'+document.date.create.getMinutes()).slice(-2)+':'+('0'+document.date.create.getSeconds()).slice(-2)}
+              td.author
+                | #{username}
               td.func
                 ul.func-list
                   li.func-item
@@ -34,6 +37,20 @@ block main
                   li.func-item
                     a(href='/files/'+document._id+'/edit').edit.item-contents.waves-effect Edit
                       i.mdi-editor-mode-edit
+          if viewable
+            each document, index in viewable
+              tr.items
+                th(scope='row').title
+                  a(href='/files/'+document._id) #{document.title}
+                td.date.create #{document.date.create.getFullYear()+'/'+('0'+(document.date.create.getMonth()+1)).slice(-2)+'/'+('0'+document.date.create.getDate()).slice(-2)+' '+('0'+document.date.create.getHours()).slice(-2)+':'+('0'+document.date.create.getMinutes()).slice(-2)+':'+('0'+document.date.create.getSeconds()).slice(-2)}
+                td.date.modified
+                  if document.date.modified
+                    | #{document.date.modified.getFullYear()+'/'+('0'+(document.date.modified.getMonth()+1)).slice(-2)+'/'+('0'+document.date.modified.getDate()).slice(-2)+' '+('0'+document.date.modified.getHours()).slice(-2)+':'+('0'+document.date.modified.getMinutes()).slice(-2)+':'+('0'+document.date.modified.getSeconds()).slice(-2)}
+                  else
+                    | #{document.date.create.getFullYear()+'/'+('0'+(document.date.create.getMonth()+1)).slice(-2)+'/'+('0'+document.date.create.getDate()).slice(-2)+' '+('0'+document.date.create.getHours()).slice(-2)+':'+('0'+document.date.create.getMinutes()).slice(-2)+':'+('0'+document.date.create.getSeconds()).slice(-2)}
+                td.author
+                  | #{document.userInfo.username}
+                td.func
             
       each document, index in documents
         section(id='modal-delete'+index).modal
@@ -52,7 +69,6 @@ block main
                   button(type='submit', name='delete').button.waves-effect Agree
               li.button-item.disagree
                 a.button.waves-effect Disagree
-                
     else
       p Write a new document.
 

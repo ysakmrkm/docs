@@ -50,11 +50,34 @@ exports.show = (req, res) ->
   docId = req.params.docId
 
   document.findById(docId, (err, data) ->
-    res.render "files/show",
-      title: data.title
-      id: data._id
-      docTitle: data.title
-      docBody: markdown.toHTML(data.document)
+    target = data
+    docOwnerId = target.userId
+
+    email = req.session.email
+
+    query =
+      'email': email
+
+    user.find(query, (err, data) ->
+      userId =  data[0]._id
+
+      console.log docOwnerId
+      console.log userId
+
+      if docOwnerId isnt String(userId)
+        res.render "files/show",
+          title: target.title
+          id: target._id
+          docTitle: target.title
+          docBody: markdown.toHTML(target.document)
+          status: 'view'
+      else
+        res.render "files/show",
+          title: target.title
+          id: target._id
+          docTitle: target.title
+          docBody: markdown.toHTML(target.document)
+    )
   )
 
 # ドキュメント編集
@@ -78,17 +101,66 @@ exports.update = (req, res) ->
   console.log 'files.update'
   console.log '================================================'
   docId = req.params.docId
+  shareAccountsEmail = req.body.shareAccountsEmail
+  deleteAccount = req.body.deleteAccount
+
+  if !req.session.shareAccounts?
+    req.session.shareAccounts = {}
 
   document.findById(docId, (err, data) ->
-    data.title = req.body.title
-    data.document = req.body.document
-    data.date.modified = new Date()
+    target = data
 
-    data.save (err, data) ->
-      if err
-        console.log err
-      else
-        res.redirect '/main'
+    if shareAccountsEmail
+      query =
+        'email': shareAccountsEmail
+
+      user.find(query, (err, data) ->
+        if !req.session.shareAccounts.view?
+          req.session.shareAccounts.view = []
+
+        if req.session.email isnt data[0].email
+          req.session.shareAccounts.view.push String(data[0]._id)
+
+          shareAccountsView = req.session.shareAccounts.view.filter((x, i, self)->
+              self.indexOf(x) is i
+          )
+
+          target.users.view = target.users.view.concat(shareAccountsView)
+
+          target.users.view = target.users.view.filter((x, i, self)->
+              self.indexOf(x) is i
+          )
+
+        target.save (err, data) ->
+          if err
+            console.log err
+          else
+            delete req.session.shareAccounts
+            res.send()
+
+      ).exec().then((data) ->
+      )
+    else if deleteAccount
+      target.users.view.forEach((e, i) ->
+        if e is deleteAccount
+          target.users.view.splice(i,1)
+      )
+
+      target.save (err, data) ->
+        if err
+          console.log err
+        else
+          res.send()
+    else
+      target.title = req.body.title
+      target.document = req.body.document
+      target.date.modified = new Date()
+
+      target.save (err, data) ->
+        if err
+          console.log err
+        else
+          res.redirect '/main'
 
     return
   )

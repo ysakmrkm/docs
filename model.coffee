@@ -15,6 +15,9 @@ UserSchema = new mongoose.Schema({
       type: String
       unique: true
     password: String
+    documents:
+      view: []
+      edit: []
   }
   { collection: 'info' }
 )
@@ -26,6 +29,9 @@ DocumentSchema = new mongoose.Schema({
     date:
       create: Date
       modified: Date
+    users:
+      view: []
+      edit: []
   }
   { collection: 'document' }
 )

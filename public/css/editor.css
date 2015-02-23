@@ -2622,7 +2622,7 @@ ul li {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.z-depth-4 {
+.z-depth-4, .modal {
   -webkit-box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
   -moz-box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
@@ -2649,7 +2649,7 @@ blockquote {
 i {
   line-height: inherit;
 }
-i.left {
+i.left, .button i {
   float: left;
   margin-right: 15px;
 }
@@ -2874,26 +2874,26 @@ td, th {
     border-right: 1px solid #d0d0d0;
   }
 }
-.collection {
+.collection, .accounts .account-list {
   background-color: #fff;
   margin: 0.5rem 0 1rem 0;
   border: 1px solid #e0e0e0;
   border-radius: 2px;
 }
-.collection .collection-item {
+.collection .collection-item, .accounts .account-list .collection-item, .collection .accounts .account-item, .accounts .collection .account-item, .accounts .account-list .account-item {
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0px;
   border-bottom: 1px solid #e0e0e0;
 }
-.collection .collection-item:last-child {
+.collection .collection-item:last-child, .accounts .account-list .collection-item:last-child, .collection .accounts .account-item:last-child, .accounts .collection .account-item:last-child, .accounts .account-list .account-item:last-child {
   border-bottom: none;
 }
-.collection .collection-item.active {
+.collection .collection-item.active, .accounts .account-list .collection-item.active, .collection .accounts .active.account-item, .accounts .collection .active.account-item, .accounts .account-list .active.account-item {
   background-color: #26a69a;
   color: #eafaf9;
 }
-.collection a.collection-item {
+.collection a.collection-item, .accounts .account-list a.collection-item, .collection .accounts a.account-item, .accounts .collection a.account-item, .accounts .account-list a.account-item {
   display: block;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -2902,39 +2902,39 @@ td, th {
   transition: 0.25s;
   color: #26a69a;
 }
-.collection a.collection-item:not(.active):hover {
+.collection a.collection-item:not(.active):hover, .accounts .account-list a.collection-item:not(.active):hover, .collection .accounts a.account-item:not(.active):hover, .accounts .collection a.account-item:not(.active):hover, .accounts .account-list a.account-item:not(.active):hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
-.collection.with-header .collection-header {
+.collection.with-header .collection-header, .accounts .with-header.account-list .collection-header {
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 20px;
 }
-.collection.with-header .collection-item {
+.collection.with-header .collection-item, .accounts .with-header.account-list .collection-item, .collection.with-header .accounts .account-item, .accounts .collection.with-header .account-item, .accounts .with-header.account-list .account-item {
   padding-left: 30px;
 }
-.collection.pagination {
+.collection.pagination, .accounts .pagination.account-list {
   display: inline-block;
 }
-.collection.pagination ul {
+.collection.pagination ul, .accounts .pagination.account-list ul {
   background-color: transparent;
   font-size: 0;
   display: inline-block;
 }
-.collection.pagination li {
+.collection.pagination li, .accounts .pagination.account-list li {
   display: inline;
   font-weight: 500;
   margin: 0px;
   padding: 0px;
   font-size: 1rem;
 }
-.collection.pagination li a {
+.collection.pagination li a, .accounts .pagination.account-list li a {
   padding: 0px 5px;
 }
-.collection.pagination li.active {
+.collection.pagination li.active, .accounts .pagination.account-list li.active {
   background-color: #03a9f4;
   color: #FFF;
 }
-.collection.pagination li:hover {
+.collection.pagination li:hover, .accounts .pagination.account-list li:hover {
   background-color: #e1f5fe;
 }
 
@@ -3145,7 +3145,7 @@ span.badge.new:after {
   text-align: center;
 }
 
-.left {
+.left, .button i {
   float: left !important;
 }
 
@@ -7177,6 +7177,61 @@ a.waves-effect .waves-ripple {
   z-index: -1;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #eee;
+  padding: 24px;
+  max-height: 70%;
+  width: 55%;
+  margin: auto;
+  overflow-y: auto;
+  z-index: 1000;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+  -webkit-transform: translate(0);
+  -moz-transform: translate(0);
+  -ms-transform: translate(0);
+  -o-transform: translate(0);
+  transform: translate(0);
+  will-change: top, opacity;
+}
+@media only screen and (max-width: 992px) {
+  .modal {
+    max-width: 80%;
+  }
+}
+.modal h1, .modal h2, .modal h3, .modal h4 {
+  margin-top: 0;
+}
+
+#lean-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 115%;
+  width: 100%;
+  background: #000;
+  display: none;
+  will-change: opacity;
+}
+
+.action-bar {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.modal-action {
+  margin-bottom: 0px;
+}
+
 /* Remove Focus Boxes */
 select:focus {
   outline: 1px solid #f8c1c3;
@@ -8050,6 +8105,7 @@ body {
 8.	#main
 ----------------------------------------------------------------------*/
 #main {
+  position: relative;
   height: 100%;
   background: #fff;
 }
@@ -8067,6 +8123,8 @@ main {
 }
 
 .title #title {
+  box-sizing: border-box;
+  padding-right: calc(145px + .75rem);
   height: 5rem;
   font-size: 3rem;
 }
@@ -8122,6 +8180,26 @@ textarea#markdown {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.share {
+  position: absolute;
+  top: calc((5rem - 54px) / 2);
+  right: .75rem;
+}
+.share p {
+  margin: 0;
+}
+
+.results ul {
+  margin: 0;
+}
+.results .func {
+  text-align: right;
+}
+.results .button {
+  height: 36px;
+  line-height: 36px;
 }
 
 /*----------------------------------------------------------------------

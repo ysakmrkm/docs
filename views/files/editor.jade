@@ -22,6 +22,19 @@ block main
         input(type='text' name='title' required='reqired')#title
       label(for='title') Title
 
+    if status === 'edit'
+      div.share.form-item
+        p
+          a(href="#!", data-beloworigin="true", data-activates="m-share").button.waves-effect.dropdown-button Share
+            i.mdi-social-person-add
+              
+        ul#m-share.dropdown-content
+          li.add
+            a(href='#modal-share') Add Account
+          li.divider
+          li.show
+            a(href='#modal-shared-list') Show Accounts
+
     div.body.form-item
       textarea(rows='10', cols='30', name='document' required='reqired' oninput='this.editor.update()')#markdown.item-contents
         if docBody
@@ -34,15 +47,77 @@ block main
       li.button-item.save
         if status === 'new'
           button(type='submit', name='save').button.waves-effect Create
-            i.mdi-editor-insert-drive-file.left
+            i.mdi-editor-insert-drive-file
         if status === 'edit'
-          input(type='hidden', name='_method', value='put')
+          input(type='hidden', name='_method', value='PUT')
           button(type='submit', name='save').button.waves-effect Update
-            i.mdi-content-save.left
+            i.mdi-content-save
       li.button-item.back
         a(href="/main").button.waves-effect Go back
-          i.mdi-navigation-arrow-back.left
+          i.mdi-navigation-arrow-back
 
+  section(id='modal-share').modal
+    div.modal-body
+      h2.title Search account
+      
+      form(method='get', action='/search/account').form
+        p.account.form-item
+          input(type='email' name='email' required='reqired')#email
+          label(for='account') Email
+        
+        footer.modal-footer
+          ul.button-list
+            li.button-item.search
+              button(type='submit', name='search').button.waves-effect Search
+                i.mdi-action-search
+
+      div.results
+        script(type="text/x-handlebars-template")#results-template
+          div.results-inner
+            {{#if username}}
+            h3.title Results
+
+            form(method='post', action='/files/'+id).form
+              table.results-table
+                thead.head
+                  tr
+                    th(scope='col', data-field='username').username Username
+                    td.empty
+                tbody.body
+                  tr.items
+                    th(scope='row').username {{username}}
+                    td.func
+                      ul.func-list
+                        li.func-item
+                          input(type='hidden', name='_method', value='PUT')
+                          input(type='hidden', name='email', value='{{email}}')
+                          button(type='submit', name='add').add.button.waves-effect.modal-action.modal-close Add
+                            i.mdi-content-add
+            {{else}}
+            p No results.
+            {{/if}}
+
+  section(id='modal-shared-list').modal
+    div.modal-body
+      h2.title Shared accounts
+      
+      div.accounts
+        script(type="text/x-handlebars-template")#accounts-template
+          div.accounts-inner
+            {{#if this}}
+            h3.title Accounts
+            
+            ul.shared-account-list.account-list
+              {{#each this}}
+              li.account-item {{username}} ({{email}})
+                a(href="#modal-remove-permission").secondary-content
+                  i.mdi-content-clear
+              {{/each}}
+            {{else}}
+            p No accounts.
+            {{/if}}
+            
 block script
   script(src='/js/markdown.js')
+  script(src='/js/handlebars-v3.0.0.js')
   script(src='/js/editor.js')

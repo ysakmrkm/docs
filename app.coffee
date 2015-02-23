@@ -8,6 +8,7 @@ routes = require("./routes/index")
 account = require("./routes/account")
 status = require("./routes/status")
 files = require("./routes/files")
+search = require("./routes/search")
 
 # 追加モジュール
 compass = require('node-compass')
@@ -85,6 +86,8 @@ app.get '/files/:docId/edit', files.edit
 app.post '/files/create', files.create
 app.put '/files/:docId', files.update
 app.delete '/files/:docId', files.destroy
+app.get '/search/account/', search.account
+app.get '/search/files/:docId', search.document
 app.get '/:username(*+)', account.show
 app.put '/:username(*+)', account.update
 

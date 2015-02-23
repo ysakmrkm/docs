@@ -10,9 +10,10 @@ block main
     !{docBody}
 
   ul.button-list
-    li.button-item.edit
-      a(href="/files/#{id}/edit").button.waves-effect Edit
-        i.mdi-editor-mode-edit.left
+    if status !== 'view'
+      li.button-item.edit
+        a(href="/files/#{id}/edit").button.waves-effect Edit
+          i.mdi-editor-mode-edit.left
     li.button-item.back
       a(href="/main").button.waves-effect Go back
         i.mdi-navigation-arrow-back.left

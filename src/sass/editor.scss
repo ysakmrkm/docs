@@ -27,7 +27,7 @@
 @import "components/buttons";
 @import "components/dropdown";
 @import "components/waves";
-//@import "components/modal";
+@import "components/modal";
 //@import "components/collapsible";
 //@import "components/materialbox";
 @import "components/form";
@@ -171,6 +171,7 @@ Created By		ysakmrkm
 #main {
 	@extend .col;
 	@extend .s12;
+	position: relative;
 	height: 100%;
 	background: #fff;
 }
@@ -190,6 +191,8 @@ main {
 
 .title {
 	#title {
+		box-sizing: border-box;
+		padding-right: calc(145px + .75rem);
 		height: 5rem;
 		font-size: 3rem;
 	}
@@ -255,6 +258,45 @@ textarea#markdown {
 
 	.back & {
 		@extend .grey;
+	}
+
+	i {
+		@extend .left;
+	}
+}
+
+.share {
+	position: absolute;
+	top: calc((5rem - 54px) / 2);
+	right: .75rem;
+
+	p {
+		margin: 0;
+	}
+}
+
+.results {
+	ul {
+		margin: 0;
+	}
+
+	.func {
+		text-align: right;
+	}
+
+	.button {
+		height: 36px;
+		line-height: 36px;
+	}
+}
+
+.accounts {
+	.account-list {
+		@extend .collection;
+	}
+
+	.account-item {
+		@extend .collection-item;
 	}
 }
 
